@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
@@ -10,9 +12,11 @@ content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="style.css">
 
-<link rel="manifest" href="manifest.json">
+<link rel="manifest"
+href="manifest.json">
 
-<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<!-- PDF.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
 </head>
 
@@ -20,11 +24,19 @@ content="width=device-width, initial-scale=1.0">
 
 <div class="app">
 
+  <!-- HEADER -->
   <div class="topbar">
+
     <h1>PLN Thermal</h1>
-    <p>Shopee Invoice → Thermal 56mm</p>
+
+    <p>
+      Shopee PDF → Thermal 56mm
+    </p>
+
   </div>
 
+
+  <!-- UPLOAD PDF -->
   <div class="card">
 
     <label class="upload">
@@ -36,59 +48,103 @@ content="width=device-width, initial-scale=1.0">
       >
 
       <div>
-        <h3>Upload Screenshot</h3>
-        <p>Shopee Invoice PLN</p>
+
+        <h3>Upload PDF Shopee</h3>
+
+        <p>
+          Pilih invoice PDF token PLN
+        </p>
+
       </div>
 
     </label>
 
     <button onclick="scanOCR()">
-      Scan OCR
+      Parse PDF
     </button>
 
-    <img id="preview">
+    <div id="preview"></div>
 
   </div>
 
+
+  <!-- FORM -->
   <div class="card">
 
     <h3>Data Struk</h3>
 
-    <input type="text" id="toko"
-    value="GARENG CELL">
+    <input
+      type="text"
+      id="toko"
+      value="GARENG CELL"
+      placeholder="Nama Toko"
+    >
 
-    <input type="text" id="alamat"
-    value="DESA SANGKANAYU RT 002/RW 001">
+    <input
+      type="text"
+      id="alamat"
+      value="DESA SANGKANAYU RT 002/RW 001"
+      placeholder="Alamat"
+    >
 
-    <input type="text" id="idpel"
-    placeholder="ID Pelanggan">
+    <input
+      type="text"
+      id="idpel"
+      placeholder="ID Pelanggan"
+    >
 
-    <input type="text" id="meter"
-    placeholder="No Meter">
+    <input
+      type="text"
+      id="meter"
+      placeholder="Nomor Meter"
+    >
 
-    <input type="text" id="nama"
-    placeholder="Nama">
+    <input
+      type="text"
+      id="nama"
+      placeholder="Nama Pelanggan"
+    >
 
-    <input type="text" id="tarif"
-    placeholder="Tarif / Daya">
+    <input
+      type="text"
+      id="tarif"
+      placeholder="Tarif / Daya"
+    >
 
-    <input type="text" id="kwh"
-    placeholder="Jumlah KWH">
+    <input
+      type="text"
+      id="kwh"
+      placeholder="Jumlah KWH"
+    >
 
-    <textarea id="token"
-    placeholder="Token PLN"></textarea>
+    <textarea
+      id="token"
+      placeholder="Token PLN"
+    ></textarea>
 
-    <input type="text" id="nominal"
-    placeholder="Nominal">
+    <input
+      type="text"
+      id="nominal"
+      placeholder="Nominal"
+    >
 
-    <input type="text" id="admin"
-    placeholder="Admin">
+    <input
+      type="text"
+      id="admin"
+      placeholder="Biaya Admin"
+    >
 
-    <input type="text" id="total"
-    placeholder="Total">
+    <input
+      type="text"
+      id="total"
+      placeholder="Total"
+    >
 
-    <button class="print"
-    onclick="printReceipt()">
+
+    <button
+      class="print"
+      onclick="printReceipt()"
+    >
 
       Cetak Thermal 56mm
 
@@ -98,90 +154,174 @@ content="width=device-width, initial-scale=1.0">
 
 </div>
 
+
+
+<!-- STRUK -->
 <div id="receipt">
 
-  <div class="center big bold"
-  id="rToko"></div>
 
-  <div class="center"
-  id="rAlamat"></div>
+  <!-- TOKO -->
+  <div
+    class="center big bold"
+    id="rToko"
+  ></div>
+
+  <div
+    class="center"
+    id="rAlamat"
+  ></div>
+
 
   <div class="double"></div>
 
+
+  <!-- TITLE -->
   <div class="center title">
+
     STRUK PEMBELIAN TOKEN LISTRIK
+
   </div>
+
 
   <div class="double"></div>
 
+
+  <!-- TANGGAL -->
   <div class="row">
+
     <span>TANGGAL</span>
+
     <span id="tanggal"></span>
+
   </div>
 
+
+  <!-- WAKTU -->
   <div class="row">
+
     <span>WAKTU</span>
+
     <span id="waktu"></span>
+
   </div>
+
 
   <div class="single"></div>
 
+
+  <!-- DATA -->
   <div class="row">
+
     <span>ID PEL</span>
+
     <span id="rIdpel"></span>
+
   </div>
 
+
   <div class="row">
+
     <span>NO METER</span>
+
     <span id="rMeter"></span>
+
   </div>
 
+
   <div class="row">
+
     <span>NAMA</span>
+
     <span id="rNama"></span>
+
   </div>
 
+
   <div class="row">
+
     <span>TARIF/DAYA</span>
+
     <span id="rTarif"></span>
+
   </div>
 
+
   <div class="row">
+
     <span>JML KWH</span>
+
     <span id="rKwh"></span>
+
   </div>
+
 
   <div class="single"></div>
 
+
+  <!-- TOKEN -->
   <div class="center token-title">
+
     TOKEN
+
   </div>
 
-  <div class="token-box"
-  id="rToken"></div>
+
+  <div
+    class="token-box"
+    id="rToken"
+  ></div>
+
 
   <div class="single"></div>
 
+
+  <!-- NOMINAL -->
   <div class="row">
+
     <span>NOMINAL</span>
+
     <span id="rNominal"></span>
+
   </div>
 
+
+  <!-- ADMIN -->
   <div class="row">
+
     <span>ADMIN</span>
+
     <span id="rAdmin"></span>
+
   </div>
+
 
   <div class="double"></div>
 
+
+  <!-- TOTAL -->
   <div class="row total">
+
     <span>TOTAL</span>
+
     <span id="rTotal"></span>
+
   </div>
 
+
   <div class="double"></div>
+
+
+  <!-- FOOTER -->
+  <div class="center footer">
+
+    TERIMA KASIH
+    <br>
+    SELAMAT MENIKMATI LISTRIK
+
+  </div>
 
 </div>
+
 
 <script src="script.js"></script>
 
