@@ -183,7 +183,7 @@ tarif[0]
 
 const kwh =
 fullText.match(
-/Jumlah\s?KwH\s?([\d\.]+)\s?kWh/i
+/Jumlah\s?KwH\s*([\d\.]+)\s*kWh/i
 )
 
 if(kwh){
@@ -229,7 +229,7 @@ if(admin){
 document
 .getElementById('admin')
 .value =
-'Rp ' + admin[1]
+'Rp 5.000'
 
 }
 
