@@ -145,7 +145,7 @@ idpel[1]
 
 const nama =
 fullText.match(
-/Nama\s+([A-Z\s]+)/i
+/Nama\s+([A-Z]+)\s+Tarif/i
 )
 
 if(nama){
@@ -183,7 +183,7 @@ tarif[0]
 
 const kwh =
 fullText.match(
-/Jumlah KwH\s+([\d\.]+)\s?kWh/i
+/Jumlah\s?KwH\s?([\d\.]+)\s?kWh/i
 )
 
 if(kwh){
@@ -202,7 +202,7 @@ kwh[1] + ' kWh'
 
 const nominal =
 fullText.match(
-/Rp Strom\/Token\s+Rp([\d\.]+)/i
+/Rp\s?Stroom\/Token\s?Rp\.?([\d\.]+)/i
 )
 
 if(nominal){
@@ -240,7 +240,7 @@ document
 
 const total =
 fullText.match(
-/Total tagihan\s+Rp([\d\.]+)/i
+/Total\s?tagihan\s?Rp\.?([\d\.]+)/i
 )
 
 if(total){
