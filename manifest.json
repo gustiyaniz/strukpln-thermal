@@ -1,0 +1,8 @@
+{
+  "name": "PLN Thermal",
+  "short_name": "PLN Thermal",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f9d58"
+}
